@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes-Friendly Diet Guide</title>
+    <style>
+        :root {
+            --primary: #2c5282;
+            --secondary: #4299e1;
+            --accent: #48bb78;
+            --background: #f7fafc;
+            --text: #2d3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-tab.active {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .section {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .food-card {
+            background: var(--background);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .meal-plan {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin-bottom: 1rem;
+        }
+
+        .tip-card {
+            background: #ebf8ff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Diabetes-Friendly Diet Guide</h1>
+        <p>A comprehensive guide to managing diabetes through proper nutrition</p>
+    </div>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('principles')">Key Principles</div>
+            <div class="nav-tab" onclick="showSection('foods-include')">Foods to Include</div>
+            <div class="nav-tab" onclick="showSection('foods-avoid')">Foods to Avoid</div>
+            <div class="nav-tab" onclick="showSection('meal-planning')">Meal Planning</div>
+            <div class="nav-tab" onclick="showSection('sample-meals')">Sample Meals</div>
+            <div class="nav-tab" onclick="showSection('tips')">Additional Tips</div>
+        </div>
+
+        <div id="principles" class="section active">
+            <h2>Key Principles</h2>
+            <div class="food-grid">
+                <div class="food-card">
+                    <h3>Carbohydrate Control</h3>
+                    <p>Focus on complex carbs with a low glycemic index (GI) to avoid blood sugar spikes.</p>
+                </div>
+                <div class="food-card">
+                    <h3>Balanced Meals</h3>
+                    <p>Include a mix of carbs, protein, and healthy fats in every meal.</p>
+                </div>
+                <div class="food-card">
+                    <h3>Portion Control</h3>
+                    <p>Monitor portion sizes to avoid overeating.</p>
+                </div>
+                <div class="food-card">
+                    <h3>Fiber-Rich Foods</h3>
+                    <p>Choose foods high in fiber to slow digestion and stabilize blood sugar.</p>
+                </div>
+                <div class="food-card">
+                    <h3>Limit Processed Foods</h3>
+                    <p>Avoid added sugars, refined carbs, and processed foods.</p>
+                </div>
+                <div class="food-card">
+                    <h3>Regular Meal Timing</h3>
+                    <p>Eat at consistent times to maintain stable blood sugar levels.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="foods-include" class="section">
+            <h2>Foods to Include</h2>
+            <div class="food-grid">
+                <div class="food-card">
+                    <h3>Non-Starchy Vegetables</h3>
+                    <ul>
+                        <li>Leafy greens (spinach, kale)</li>
+                        <li>Broccoli, cauliflower</li>
+                        <li>Bell peppers, cucumbers</li>
+                    </ul>
+                </div>
+                <div class="food-card">
+                    <h3>Whole Grains</h3>
+                    <ul>
+                        <li>Brown rice, quinoa</li>
+                        <li>Whole wheat bread</li>
+                        <li>Oats, barley</li>
+                    </ul>
+                </div>
+                <div class="food-card">
+                    <h3>Lean Proteins</h3>
+                    <ul>
+                        <li>Skinless poultry, fish</li>
+                        <li>Eggs, tofu</li>
+                        <li>Legumes</li>
+                    </ul>
+                </div>
+                <div class="food-card">
+                    <h3>Healthy Fats</h3>
+                    <ul>
+                        <li>Avocados, nuts</li>
+                        <li>Olive oil</li>
+                        <li>Seeds</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="foods-avoid" class="section">
+            <h2>Foods to Avoid or Limit</h2>
+            <div class="food-grid">
+                <div class="food-card">
+                    <h3>Sugary Foods</h3>
+                    <ul>
+                        <li>Sodas and candies</li>
+                        <li>Cakes and cookies</li>
+                        <li>Sweetened cereals</li>
+                    </ul>
+                </div>
+                <div class="food-card">
+                    <h3>Refined Carbohydrates</h3>
+                    <ul>
+                        <li>White bread and pasta</li>
+                        <li>White rice</li>
+                        <li>Sugary cereals</li>
+                    </ul>
+                </div>
+                <div class="food-card">
+                    <h3>Unhealthy Fats</h3>
+                    <ul>
+                        <li>Fried foods</li>
+                        <li>Processed snacks</li>
+                        <li>Fatty meats</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="meal-planning" class="section">
+            <h2>Meal Planning Tips</h2>
+            <div class="tip-card">
+                <h3>The Plate Method</h3>
+                <p>Fill your plate with:</p>
+                <ul>
+                    <li>½ non-starchy vegetables</li>
+                    <li>¼ lean protein</li>
+                    <li>¼ whole grains or starchy vegetables</li>
+                </ul>
+            </div>
+            <div class="tip-card">
+                <h3>Healthy Snacking</h3>
+                <p>Choose nutritious snacks like:</p>
+                <ul>
+                    <li>Nuts and seeds</li>
+                    <li>Vegetables with hummus</li>
+                    <li>Low-fat cheese</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="sample-meals" class="section">
+            <h2>Sample Meal Plan</h2>
+            <div class="meal-plan">
+                <h3>Breakfast</h3>
+                <ul>
+                    <li>Oatmeal with berries and nuts</li>
+                    <li>Boiled egg or avocado toast</li>
+                </ul>
+            </div>
+            <div class="meal-plan">
+                <h3>Lunch</h3>
+                <ul>
+                    <li>Grilled chicken salad</li>
+                    <li>Small serving of quinoa</li>
+                </ul>
+            </div>
+            <div class="meal-plan">
+                <h3>Dinner</h3>
+                <ul>
+                    <li>Baked salmon with steamed broccoli</li>
+                    <li>Sweet potato and lentils</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="tips" class="section">
+            <h2>Additional Tips</h2>
+            <div class="food-grid">
+                <div class="food-card">
+                    <h3>Monitor Blood Sugar</h3>
+                    <p>Regularly check your blood sugar levels to understand how different foods affect you.</p>
+                </div>
+                <div class="food-card">
+                    <h3>Exercise</h3>
+                    <p>Combine your diet with regular physical activity to improve insulin sensitivity.</p>
+                </div>
+                <div class="food-card">
+                    <h3>Professional Guidance</h3>
+                    <p>Consult a healthcare professional or dietitian to create a personalized meal plan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

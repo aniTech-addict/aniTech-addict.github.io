@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #007BFF; /* Blue theme */
+    color: white;
+    padding: 20px;
+    height: 100vh; /* Full height */
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.question {
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.selected {
+    background-color: #0056b3; /* Darker blue for selected */
+    color: white;
+}
+
+.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

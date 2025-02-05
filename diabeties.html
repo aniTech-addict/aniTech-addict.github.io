@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Risk Assessment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f8ff;
+        }
+        .question-group {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin: 8px 0;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        label:hover {
+            background-color: #f8f9fa;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diabetes Risk Assessment</h1>
+    <form id="diabetesForm">
+        <!-- Question 1 -->
+        <div class="question-group">
+            <h2>1. Family History: Do you have a family history of diabetes?</h2>
+            <label><input type="radio" name="q1" value="3"> Yes, in first-degree relative</label>
+            <label><input type="radio" name="q1" value="2"> Yes, in second-degree relative</label>
+            <label><input type="radio" name="q1" value="0"> No family history</label>
+            <label><input type="radio" name="q1" value="1"> Not sure</label>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-group">
+            <h2>2. Age: What is your age?</h2>
+            <label><input type="radio" name="q2" value="0"> Under 30</label>
+            <label><input type="radio" name="q2" value="1"> 30–45</label>
+            <label><input type="radio" name="q2" value="2"> 46–60</label>
+            <label><input type="radio" name="q2" value="3"> Over 60</label>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-group">
+            <h2>3. Weight and BMI: What is your Body Mass Index (BMI)?</h2>
+            <label><input type="radio" name="q3" value="0"> Under 18.5 (Underweight)</label>
+            <label><input type="radio" name="q3" value="0"> 18.5–24.9 (Normal)</label>
+            <label><input type="radio" name="q3" value="1"> 25–29.9 (Overweight)</label>
+            <label><input type="radio" name="q3" value="2"> 30+ (Obese)</label>
+        </div>
+
+        <!-- Continue adding all questions following the same pattern -->
+        <!-- Question 4 to 14 (truncated for space) -->
+                <!-- Question 4 -->
+                <div class="question-group">
+                    <h2>4. Physical Activity: How often do you engage in moderate to vigorous physical activity?</h2>
+                    <label><input type="radio" name="q4" value="3"> Less than 30 minutes per week</label>
+                    <label><input type="radio" name="q4" value="2"> 30–90 minutes per week</label>
+                    <label><input type="radio" name="q4" value="1"> 90–150 minutes per week</label>
+                    <label><input type="radio" name="q4" value="0"> More than 150 minutes per week</label>
+                </div>
+        
+                <!-- Question 5 -->
+                <div class="question-group">
+                    <h2>5. Diet: How often do you consume sugary drinks or high-sugar foods?</h2>
+                    <label><input type="radio" name="q5" value="3"> Daily</label>
+                    <label><input type="radio" name="q5" value="2"> 3–5 times per week</label>
+                    <label><input type="radio" name="q5" value="1"> 1–2 times per week</label>
+                    <label><input type="radio" name="q5" value="0"> Rarely or never</label>
+                </div>
+        
+                <!-- Question 6 -->
+                <div class="question-group">
+                    <h2>6. Symptoms: Have you experienced any of the following symptoms recently? (Select all that apply)</h2>
+                    <label><input type="checkbox" name="q6" value="1"> Increased thirst</label>
+                    <label><input type="checkbox" name="q6" value="1"> Frequent urination</label>
+                    <label><input type="checkbox" name="q6" value="1"> Unexplained weight loss</label>
+                    <label><input type="checkbox" name="q6" value="1"> Fatigue or tiredness</label>
+                    <label><input type="checkbox" name="q6" value="1"> Blurred vision</label>
+                    <label><input type="checkbox" name="q6" value="1"> Slow-healing wounds</label>
+                    <label><input type="checkbox" name="q6" value="1"> Tingling or numbness in hands or feet</label>
+                    <label><input type="checkbox" name="q6" value="0"> None of the above</label>
+                </div>
+        
+                <!-- Question 7 -->
+                <div class="question-group">
+                    <h2>7. Blood Pressure: What is your average blood pressure reading?</h2>
+                    <label><input type="radio" name="q7" value="0"> Normal (less than 120/80 mmHg)</label>
+                    <label><input type="radio" name="q7" value="1"> Elevated (120–129/less than 80 mmHg)</label>
+                    <label><input type="radio" name="q7" value="2"> High (130/80 mmHg or higher)</label>
+                    <label><input type="radio" name="q7" value="1"> Not sure</label>
+                </div>
+        
+                <!-- Question 8 -->
+                <div class="question-group">
+                    <h2>8. Cholesterol Levels: Have you been diagnosed with high cholesterol or triglycerides?</h2>
+                    <label><input type="radio" name="q8" value="2"> Yes</label>
+                    <label><input type="radio" name="q8" value="0"> No</label>
+                    <label><input type="radio" name="q8" value="1"> Not sure</label>
+                </div>
+        
+                <!-- Question 9 -->
+                <div class="question-group">
+                    <h2>9. Gestational Diabetes: If applicable, have you ever been diagnosed with gestational diabetes during pregnancy?</h2>
+                    <label><input type="radio" name="q9" value="3"> Yes</label>
+                    <label><input type="radio" name="q9" value="0"> No</label>
+                    <label><input type="radio" name="q9" value="0"> Not applicable</label>
+                </div>
+        
+                <!-- Question 10 -->
+                <div class="question-group">
+                    <h2>10. Sleep Habits: How many hours of sleep do you get on average per night?</h2>
+                    <label><input type="radio" name="q10" value="2"> Less than 5 hours</label>
+                    <label><input type="radio" name="q10" value="1"> 5–6 hours</label>
+                    <label><input type="radio" name="q10" value="0"> 7–8 hours</label>
+                    <label><input type="radio" name="q10" value="1"> More than 8 hours</label>
+                </div>
+        
+                <!-- Question 11 -->
+                <div class="question-group">
+                    <h2>11. Smoking and Alcohol: Do you smoke or consume alcohol regularly?</h2>
+                    <label><input type="radio" name="q11" value="2"> Smoke regularly</label>
+                    <label><input type="radio" name="q11" value="1"> Drink alcohol regularly</label>
+                    <label><input type="radio" name="q11" value="3"> Both smoke and drink regularly</label>
+                    <label><input type="radio" name="q11" value="0"> Neither</label>
+                </div>
+        
+                <!-- Question 12 -->
+                <div class="question-group">
+                    <h2>12. Stress Levels: How would you describe your stress levels?</h2>
+                    <label><input type="radio" name="q12" value="2"> Very high</label>
+                    <label><input type="radio" name="q12" value="1"> Moderate</label>
+                    <label><input type="radio" name="q12" value="0"> Low</label>
+                    <label><input type="radio" name="q12" value="1"> Not sure</label>
+                </div>
+        
+                <!-- Question 13 -->
+                <div class="question-group">
+                    <h2>13. Previous Diagnosis: Have you ever been told by a doctor that you have prediabetes or borderline diabetes?</h2>
+                    <label><input type="radio" name="q13" value="3"> Yes</label>
+                    <label><input type="radio" name="q13" value="0"> No</label>
+                    <label><input type="radio" name="q13" value="1"> Not sure</label>
+                </div>
+        
+                <!-- Question 14 -->
+                <div class="question-group">
+                    <h2>14. Waist Circumference: What is your waist circumference?</h2>
+                    <label><input type="radio" name="q14" value="0"> Less than 35 inches (for women) or 40 inches (for men)</label>
+                    <label><input type="radio" name="q14" value="1"> 35–40 inches (for women) or 40–45 inches (for men)</label>
+                    <label><input type="radio" name="q14" value="2"> More than 40 inches (for women) or 45 inches (for men)</label>
+                    <label><input type="radio" name="q14" value="1"> Not sure</label>
+                </div>
+
+        <!-- Question 15 -->
+        <div class="question-group">
+            <h2>15. Ethnicity: What is your ethnicity?</h2>
+            <label><input type="radio" name="q15" value="2"> African American</label>
+            <label><input type="radio" name="q15" value="2"> Hispanic/Latino</label>
+            <label><input type="radio" name="q15" value="2"> Asian American</label>
+            <label><input type="radio" name="q15" value="2"> Native American</label>
+            <label><input type="radio" name="q15" value="0"> Caucasian</label>
+            <label><input type="radio" name="q15" value="1"> Other</label>
+        </div>
+
+        <button type="button" onclick="calculateRisk()">Check Risk</button>
+    </form>
+
+
+    <button type="button" id="dietPlanButton" style="display:none;" onclick="getDietPlan()">Get Personalized Diet Plan</button>
+
+    <script>
+        function calculateRisk() {
+            let score = 0;
+            
+            // Calculate scores for all questions
+            for(let i = 1; i <= 15; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected) {
+                    score += parseInt(selected.value);
+                }
+            }
+            
+            // Display diet plan button after risk calculation
+            document.getElementById('dietPlanButton').style.display = 'block';
+        }
+
+        function getDietPlan() {
+            // Implement functionality to get personalized diet plan
+            alert('Your personalized diet plan is being prepared!');
+        }
+    </script>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateRisk() {
+            let score = 0;
+            
+            // Calculate scores for all questions
+            for(let i = 1; i <= 15; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                score += selected ? parseInt(selected.value) : 0;
+            }
+
+            // Calculate risk level
+            let riskCategory;
+            if(score <= 10) {
+                riskCategory = "Low Risk";
+                color = "#d4edda";
+                advice = "Maintain your healthy lifestyle!";
+            } else if(score <= 20) {
+                riskCategory = "Moderate Risk";
+                color = "#fff3cd";
+                advice = "Consider lifestyle modifications and consult a healthcare provider.";
+            } else {
+                riskCategory = "High Risk";
+                color = "#f8d7da";
+                advice = "Please consult a healthcare professional for proper evaluation.";
+            }
+
+            // Display results
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <h3>Risk Assessment Result: ${riskCategory}</h3>
+                <p>Your risk score: ${score}/40</p>
+                <p>${advice}</p>
+                <p><small>Note: This is a simplified assessment tool and not a medical diagnosis.</small></p>
+            `;
+            resultDiv.style.display = 'block';
+            resultDiv.style.backgroundColor = color;
+        }
+
+
+    </script>
+</body>
+</html>

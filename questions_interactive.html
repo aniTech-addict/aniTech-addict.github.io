@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Follow-Up Questions</title>
+    <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Health Questions</h2>
+        <p>Please answer the following questions based on your symptoms.</p>
+    </div>
+    <div class="main-content">
+        <div id="questions-container"></div>
+    </div>
+
+    <script>
+        // Get the selected symptom from storage
+        const symptom = sessionStorage.getItem('selectedSymptom');
+        
+        // Define questions for each symptom
+        const questions = {
+            cold: [
+                "Do you have a fever?",
+                "Is your throat sore?",
+                "How long have you had symptoms? (Days)"
+            ],
+            headache: [
+                "Is the pain throbbing or constant?",
+                "Do you experience sensitivity to light?",
+                "Rate your pain (1-10)"
+            ],
+            breathing: [
+                "Does breathing worsen with activity?",
+                "Do you have chest pain?",
+                "Are you a smoker?"
+            ]
+        };
+
+        // Display questions
+        const container = document.getElementById('questions-container');
+        let answers = [];
+
+        if (symptom && questions[symptom]) {
+            questions[symptom].forEach((q, index) => {
+                container.innerHTML += `
+                    <div class="question">
+                        <p>${q}</p>
+                        <button onclick="selectAnswer(${index}, 'Yes', this)">Yes</button>
+                        <button onclick="selectAnswer(${index}, 'No', this)">No</button>
+                        <button onclick="selectAnswer(${index}, 'N/A', this)">N/A</button>
+                    </div>
+                `;
+            });
+
+            // Add submit button
+            container.innerHTML += `
+                <button onclick="submitAnswers()">Get Recommendation</button>
+            `;
+        } else {
+            container.innerHTML = "<p>No questions available for the selected symptom.</p>";
+        }
+
+        function selectAnswer(index, answer, button) {
+            answers[index] = answer; // Store the selected answer
+            const buttons = button.parentNode.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.classList.add('disabled'); // Disable all buttons
+                btn.onclick = null; // Remove click event
+            });
+            button.classList.add('selected'); // Highlight the selected button
+        }
+
+        function submitAnswers() {
+            // Store answers temporarily
+            sessionStorage.setItem('symptomAnswers', JSON.stringify(answers));
+            window.location.href = 'result.html';
+        }
+    </script>
+</body>
+</html>

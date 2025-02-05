@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare+ - Dashboard</title>
+    <style>
+        :root {
+            --primary-blue: #1a237e;
+            --secondary-blue: #303f9f;
+            --accent-orange: #e65100;
+            --light-gray: #f5f5f5;
+            --gradient-start: #bcb5a7;
+            --gradient-mid: #cdd4e9;
+            --gradient-end: #cbd1e2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(-45deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end), #fff);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-bottom: 2px solid rgba(26, 35, 126, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .nav-content h1 {
+            color: var(--primary-blue);
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-btn {
+            background: linear-gradient(45deg, var(--secondary-blue), #4083ff);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .welcome-banner {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue), #4083ff);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-blue), var(--secondary-blue));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-color: rgba(26, 35, 126, 0.2);
+        }
+
+        .stat-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .stat-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .stat-card p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .appointments-list {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .appointments-list::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-orange), #ff9800);
+        }
+
+        .appointment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .book-appointment-btn {
+            background: linear-gradient(45deg, var(--accent-orange), #ff9800);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-appointment-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .appointment-item {
+            padding: 1.5rem;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .appointment-item:last-child {
+            border-bottom: none;
+        }
+
+        .appointment-item:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: translateX(10px);
+        }
+
+        .appointment-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .user-info {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        #user-email {
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .user-info {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <h1>HealthCare +</h1>
+            <div class="user-info">
+                <span id="user-email"></span>
+                <button class="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="welcome-banner">
+            <h2>Welcome, <span id="user-name">User</span>!</h2>
+            <p>Here's an overview of your health dashboard</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3><a href="symtoms.html">Self Analysis</a></h3>
+                <p>4 available</p>
+            </div>
+            <div class="stat-card">
+                <h3><a href="med_report02.html">Medical Reports</a></h3>
+                <p>3 new reports</p>
+            </div>
+            <div class="stat-card">
+                <h3><a href="Docs/docs_profile.html">Connect to Doctors</a></h3>
+                <p>Connect with popular Doctors</p>
+            </div>
+            <div class="stat-card">
+                <h3><a href="my-chatbot/index.html">Chatbot</a></h3>
+                <p>Get your questions answered here</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <h3><a href="diet_plan.html">Diet Plan</a></h3>
+            <p>Personalized Diet Plan</p>
+        </div>
+
+        <div class="appointments-list">
+            <div class="appointment-header">
+                <h2>Medication Reminders</h2>
+                <button class="book-appointment-btn">Add New +</button>
+            </div>
+            <div class="appointment-item">
+                <h4>Antibiotic</h4>
+                <p>Penicillin at 10:00 AM</p>
+            </div>
+            <div class="appointment-item">
+                <h4>Dental Cleaning</h4>
+                <p>Dr. Johnson - Next Week, Monday at 2:00 PM</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            if (!userData || !userData.isLoggedIn) {
+                window.location.href = 'index.html';
+                return;
+            }
+            document.getElementById('user-email').textContent = userData.email;
+            document.getElementById('user-name').textContent = userData.name;
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

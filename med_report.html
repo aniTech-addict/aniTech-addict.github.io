@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Medical Report</h1>
+
+  <table>
+    <tr>
+      <th>Patient Name</th>
+      <td>John Doe</td>
+    </tr>
+    <tr>
+      <th>Patient ID</th>
+      <td>123456</td>
+    </tr>
+    <tr>
+      <th>Date of Birth</th>
+      <td>January 1, 1980</td>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>Date of Report</th>
+      <td>October 10, 2023</td>
+    </tr>
+    <tr>
+      <th>Diagnosis</th>
+      <td id="diagnosis">Diabetes</td>
+    </tr>
+    <tr>
+      <th>Symptoms</th>
+      <td>
+        <ul>
+          <li>Increased thirst</li>
+          <li>Frequent urination</li>
+          <li>Fatigue</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>Medications</th>
+      <td>
+        <ul>
+          <li>Metformin</li>
+          <li>Insulin</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>Doctor's Notes</th>
+      <td>
+        <p>The patient is advised to monitor blood sugar levels regularly and follow a strict diet plan.</p>
+      </td>
+    </tr>
+  </table>
+
+  <button id="generate-diet-plan">Generate Diet Plan</button>
+
+  <script>
+    // Extract the type of disease
+    const diagnosis = document.getElementById('diagnosis').textContent;
+
+    // Store the diagnosis in local storage
+    localStorage.setItem('diagnosis', diagnosis);
+
+    // Redirect to the diet plan page
+    document.getElementById('generate-diet-plan').addEventListener('click', () => {
+      window.location.href = 'diet-plan.html';
+    });
+  </script>
+</body>
+</html>

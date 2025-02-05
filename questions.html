@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Follow-Up Questions</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .question { margin: 20px 0; }
+        button { padding: 10px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div id="questions-container"></div>
+
+    <script>
+        // Get the selected symptom from storage
+        const symptom = sessionStorage.getItem('selectedSymptom');
+        
+        // Define questions for each symptom
+        const questions = {
+            cold: [
+                "Do you have a fever? (Yes/No)",
+                "Is your throat sore? (Yes/No)",
+                "How long have you had symptoms? (Days)"
+            ],
+            headache: [
+                "Is the pain throbbing or constant?",
+                "Do you experience sensitivity to light? (Yes/No)",
+                "Rate your pain (1-10)"
+            ],
+            breathing: [
+                "Does breathing worsen with activity? (Yes/No)",
+                "Do you have chest pain? (Yes/No)",
+                "Are you a smoker? (Yes/No)"
+            ]
+        };
+
+        // Display questions
+        const container = document.getElementById('questions-container');
+        let answers = [];
+
+        questions[symptom].forEach((q, index) => {
+            container.innerHTML += `
+                <div class="question">
+                    <p>${q}</p>
+                    <input type="text" id="q${index}" placeholder="Your answer...">
+                </div>
+            `;
+        });
+
+        // Add submit button
+        container.innerHTML += `
+            <button onclick="submitAnswers()">Get Recommendation</button>
+        `;
+
+        function submitAnswers() {
+            // Collect answers
+            answers = questions[symptom].map((_, index) => 
+                document.getElementById(`q${index}`).value
+            );
+            
+            // Store answers temporarily
+            sessionStorage.setItem('symptomAnswers', JSON.stringify(answers));
+            window.location.href = 'result.html';
+        }
+    </script>
+</body>
+</html>

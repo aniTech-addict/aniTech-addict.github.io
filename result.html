@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendation</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .result { background: #e8f4ff; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="result" id="recommendation"></div>
+
+    <script>
+        // Retrieve data
+        const symptom = sessionStorage.getItem('selectedSymptom');
+        const answers = JSON.parse(sessionStorage.getItem('symptomAnswers'));
+
+        // Simple recommendation logic
+        const recommendations = {
+            cold: `Based on your answers (${answers.join(', ')}): 
+                   Rest, drink fluids, and consider over-the-counter cold medicine.`,
+            headache: `Based on your answers (${answers.join(', ')}): 
+                       Rest in a dark room. Consult a doctor if pain persists.`,
+            breathing: `Based on your answers (${answers.join(', ')}): 
+                        Seek immediate medical attention if breathing worsens.`
+        };
+
+        // Display result
+        document.getElementById('recommendation').innerText = recommendations[symptom];
+    </script>
+</body>
+</html>

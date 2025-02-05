@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .report-log {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    .report-log, .report-log th, .report-log td {
+      border: 1px solid #ddd;
+    }
+    .report-log th, .report-log td {
+      padding: 12px;
+      text-align: left;
+    }
+    .report-log th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+    .report-log tr {
+      cursor: pointer;
+    }
+    .report-log tr:hover {
+      background-color: #f1f1f1;
+    }
+    .report-details {
+      display: none;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-top: 1px solid #ddd;
+    }
+    .report-details table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .report-details table, .report-details th, .report-details td {
+      border: 1px solid #ddd;
+    }
+    .report-details th, .report-details td {
+      padding: 8px;
+      text-align: left;
+    }
+    .report-details th {
+      background-color: #e2e2e2;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Medical Report Log</h1>
+
+  <table class="report-log">
+    <thead>
+      <tr>
+        <th>Date of Report</th>
+        <th>Diagnosis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr onclick="toggleDetails('report1')">
+        <td>October 10, 2023</td>
+        <td>Diabetes</td>
+      </tr>
+      <tr id="report1" class="report-details">
+        <td colspan="2">
+          <table>
+            <tr>
+              <th>Patient Name</th>
+              <td>John Doe</td>
+            </tr>
+            <tr>
+              <th>Patient ID</th>
+              <td>123456</td>
+            </tr>
+            <tr>
+              <th>Date of Birth</th>
+              <td>January 1, 1980</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td>Male</td>
+            </tr>
+            <tr>
+              <th>Symptoms</th>
+              <td>
+                <ul>
+                  <li>Increased thirst</li>
+                  <li>Frequent urination</li>
+                  <li>Fatigue</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Medications</th>
+              <td>
+                <ul>
+                  <li>Metformin</li>
+                  <li>Insulin</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Doctor's Notes</th>
+              <td>
+                <p>The patient is advised to monitor blood sugar levels regularly and follow a strict diet plan.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr onclick="toggleDetails('report2')">
+        <td>September 15, 2023</td>
+        <td>Hypertension</td>
+      </tr>
+      <tr id="report2" class="report-details">
+        <td colspan="2">
+          <table>
+            <tr>
+              <th>Patient Name</th>
+              <td>John Doe</td>
+            </tr>
+            <tr>
+              <th>Patient ID</th>
+              <td>123456</td>
+            </tr>
+            <tr>
+              <th>Date of Birth</th>
+              <td>January 1, 1980</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td>Male</td>
+            </tr>
+            <tr>
+              <th>Symptoms</th>
+              <td>
+                <ul>
+                  <li>Headaches</li>
+                  <li>Dizziness</li>
+                  <li>Blurred vision</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Medications</th>
+              <td>
+                <ul>
+                  <li>Lisinopril</li>
+                  <li>Amlodipine</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Doctor's Notes</th>
+              <td>
+                <p>The patient is advised to reduce salt intake and monitor blood pressure regularly.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr onclick="toggleDetails('report3')">
+        <td>August 20, 2023</td>
+        <td>Anemia</td>
+      </tr>
+      <tr id="report3" class="report-details">
+        <td colspan="2">
+          <table>
+            <tr>
+              <th>Patient Name</th>
+              <td>John Doe</td>
+            </tr>
+            <tr>
+              <th>Patient ID</th>
+              <td>123456</td>
+            </tr>
+            <tr>
+              <th>Date of Birth</th>
+              <td>January 1, 1980</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td>Male</td>
+            </tr>
+            <tr>
+              <th>Symptoms</th>
+              <td>
+                <ul>
+                  <li>Fatigue</li>
+                  <li>Weakness</li>
+                  <li>Pale skin</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Blood Test Results</th>
+              <td>
+                <ul>
+                  <li>Hemoglobin: 10 g/dL (Low)</li>
+                  <li>Ferritin: 15 ng/mL (Low)</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Doctor's Notes</th>
+              <td>
+                <p>The patient is advised to take iron supplements and increase iron-rich foods in their diet.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      
+      <tr onclick="toggleDetails('report4')">
+        <td>July 5  , 2023  </td>
+        <td>Vitamin D Deficiency</td>
+      </tr>
+      <tr id="report4" class="report-details">
+        <td colspan="2">
+          <table>
+            <tr>
+              <th>Patient Name</th>
+              <td>John Doe</td>
+            </tr>
+            <tr>
+              <th>Patient ID</th>
+              <td>123456</td>
+            </tr>
+            <tr>
+              <th>Date of Birth</th>
+              <td>January 1, 1980</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td>Male</td>
+            </tr>
+            <tr>
+              <th>Symptoms</th>
+              <td>
+                <ul>
+                  <li>Bone pain</li>
+                  <li>Muscle weakness</li>
+                  <li>Fatigue</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Blood Test Results</th>
+              <td>
+                <ul>
+                  <li>Vitamin D: 18 ng/mL (Low)</li>
+                  <li>Calcium: 8.5 mg/dL (Normal)</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Doctor's Notes</th>
+              <td>
+                <p>The patient is advised to take Vitamin D supplements and get more sunlight exposure.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      
+      <tr onclick="toggleDetails('report5')">
+        <td>June 12, 2023</td>
+        <td>Thyroid Disorder</td>
+      </tr>
+      <tr id="report5" class="report-details">
+        <td colspan="2">
+          <table>
+            <tr>
+              <th>Patient Name</th>
+              <td>John Doe</td>
+            </tr>
+            <tr>
+              <th>Patient ID</th>
+              <td>123456</td>
+            </tr>
+            <tr>
+              <th>Date of Birth</th>
+              <td>January 1, 1980</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td>Male</td>
+            </tr>
+            <tr>
+              <th>Symptoms</th>
+              <td>
+                <ul>
+                  <li>Weight gain</li>
+                  <li>Fatigue</li>
+                  <li>Cold intolerance</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Blood Test Results</th>
+              <td>
+                <ul>
+                  <li>TSH: 8.5 mIU/L (High)</li>
+                  <li>T4: 0.6 ng/dL (Low)</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Doctor's Notes</th>
+              <td>
+                <p>The patient is advised to start thyroid hormone replacement therapy.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      
+      <tr onclick="toggleDetails('report6')">
+        <td>May 3, 2023</td>
+        <td>High Cholesterol</td>
+      </tr>
+      <tr id="report6" class="report-details">
+        <td colspan="2">
+          <table>
+            <tr>
+              <th>Patient Name</th>
+              <td>John Doe</td>
+            </tr>
+            <tr>
+              <th>Patient ID</th>
+              <td>123456</td>
+            </tr>
+            <tr>
+              <th>Date of Birth</th>
+              <td>January 1, 1980</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td>Male</td>
+            </tr>
+            <tr>
+              <th>Symptoms</th>
+              <td>
+                <ul>
+                  <li>None (Asymptomatic)</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Blood Test Results</th>
+              <td>
+                <ul>
+                  <li>Total Cholesterol: 250 mg/dL (High)</li>
+                  <li>LDL: 160 mg/dL (High)</li>
+                  <li>HDL: 40 mg/dL (Low)</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Doctor's Notes</th>
+              <td>
+                <p>The patient is advised to follow a low-cholesterol diet and consider statin therapy.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button id="generate-diet-plan">Add new +</button>
+
+  <script>
+    // Function to toggle report details
+    function toggleDetails(reportId) {
+      const details = document.getElementById(reportId);
+      details.style.display = details.style.display === 'table-row' ? 'none' : 'table-row';
+    }
+
+    // Redirect to the diet plan page
+    document.getElementById('generate-diet-plan').addEventListener('click', () => {
+      const diagnosis = document.querySelector('.report-log tbody tr td:nth-child(2)').textContent;
+      localStorage.setItem('diagnosis', diagnosis);
+      window.location.href = 'diet-plan.html';
+    });
+  </script>
+</body>
+</html>
